@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Departments from './components/Departments';
 import Items from './components/Items';
 import ItemForm from './components/ItemForm';
+import ItemEdit from './components/ItemEdit';
 import Navbar from './components/Navbar';
 import NoMatch from './components/NoMatch';
 import { Container, } from 'semantic-ui-react';
@@ -22,6 +23,7 @@ const App = () => (
         <Route exact path='/departments/:id' component={DepartmentView} />
         <Route exact path='/api/departments/:department_id/items' component={Items} />
         <Route exact path='/api/departments/:department_id/new' component={ItemForm} />
+        <Route exact path='/api/departments/:department_id/items/:id' component={ItemEdit} />
 
         {/* No Match Route */}
         <Route component={NoMatch} />

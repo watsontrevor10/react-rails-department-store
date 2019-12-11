@@ -48,6 +48,7 @@ class DepartmentView extends React.Component {
         <Card.Meta>${ item.price }</Card.Meta>
         </Card.Content>
         <Card.Content extra>
+          <Button color="blue inverted" as={Link} to={`/api/departments/${this.props.match.params.id}/items/${item.id}`}>Edit Item</Button>
           <Button color="red inverted" onClick={() => this.deleteItem(item.id)}>Delete Item</Button>
         </Card.Content>
       </Card>
