@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Form, Header, } from 'semantic-ui-react';
 
 class ItemForm extends React.Component {
-  defaultValues = [{ item_name: '', quantity: '', price: '', }]
+  defaultValues = { item_name: '', quantity: '', price: '', }
   state = { ...this.defaultValues }
 
   handleChange = (e) => {
@@ -13,7 +13,7 @@ class ItemForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post(`/api/departments/${this.props.match.params.department_id}/items`)
+    axios.post(`/api/departments/${this.props.match.params.department_id}/items`, {...this.state} )
     .then( resp => {
       this.props.history.push(`/departments/${this.props.match.params.department_id}`)
     })
@@ -54,7 +54,11 @@ class ItemForm extends React.Component {
                 required
                 />
             </Form.Group>
-            <Form.Button>Submit</Form.Button>
+            <Form.Group>
+              <Form.Button color="green inverted">Submit</Form.Button>
+              <Form.Button color="blue inverted" onClick={this.props.history.goBack}>Cancel</Form.Button>
+            </Form.Group>
+
         </Form>
       </div>
     )

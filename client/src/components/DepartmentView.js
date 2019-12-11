@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-// import Items from './Items';
 import { Link, } from 'react-router-dom';
 import { Button, Header, Segment, Card, } from 'semantic-ui-react';
 
@@ -29,8 +28,15 @@ class DepartmentView extends React.Component {
       this.props.history.goBack()
   }
 
+  deleteItem = (id) => {
+    axios.delete(`/api/departments/${this.props.match.params.id}/items/${id}`)
+      .then( res => {
+        this.setState({ items: this.state.items.filter(item => item.id !== id), })
+      })
+    
+  }
+  
   renderItems = () => {
-    // const { items, } = this.state
 
     if (this.state.items.length <= 0)
       return <h2>No Items</h2>
@@ -42,21 +48,21 @@ class DepartmentView extends React.Component {
         <Card.Meta>${ item.price }</Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <Button>Delete</Button>
+          <Button color="red inverted" onClick={() => this.deleteItem(item.id)}>Delete Item</Button>
         </Card.Content>
       </Card>
     ))
   }
 
   render() {
-    const { store_name, } = this.state.store 
+    const { store: {store_name, }, } = this.state 
     return (
       <div>
         <Segment>
           <Header as="h1">{ store_name }</Header>
         </Segment>
-        <Button onClick={this.props.history.goBack}>Back</Button>
-        <Button onClick={this.deleteStore}>Delete</Button>
+        <Button onClick={this.props.history.goBack} color="blue inverted">Back</Button>
+        <Button onClick={this.deleteStore} color="red inverted">Delete</Button>
         <br />
         <br />
         <hr />
@@ -65,7 +71,7 @@ class DepartmentView extends React.Component {
         <Button as={Link} to={`/api/departments/${this.props.match.params.id}/new`}>Add Item</Button>
         <br />
         <br />
-        {/* <Items store={this.state.store} items={this.state.items} /> */}
+
         <Card.Group>
           { this.renderItems() }
         </Card.Group>

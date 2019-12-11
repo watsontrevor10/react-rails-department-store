@@ -1,17 +1,17 @@
 import React from 'react';
 // import axios from 'axios';
-import { Card, } from 'semantic-ui-react';
+import { Card, Button, } from 'semantic-ui-react';
 
 class Items extends React.Component {
   // defaultValues = { ...this.props.items }
-  state = { items: [], }
+  state = { items: [],}
 
-  itemsState = () => {
+  componentDidMount = () => {
     this.setState({ items: this.props.items })
   }
 
   renderItems = () => {
-    const { items, } = this.state
+    const { items, } = this.props
 
     if (items.length <= 0)
       return <h2>No Items</h2>
@@ -22,12 +22,16 @@ class Items extends React.Component {
         <Card.Meta>{ item.quantity }</Card.Meta>
         <Card.Meta>${ item.price }</Card.Meta>
         </Card.Content>
+        <Card.Content>
+          <Button color="red inverted">Delete Item</Button>
+        </Card.Content>
       </Card>
     ))
   }
 
 
   render() {
+
     return (
       <div>
         <Card.Group>
