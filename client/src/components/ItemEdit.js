@@ -20,7 +20,7 @@ class ItemForm extends React.Component {
     e.preventDefault()
 
     axios.post(`/api/departments/${this.props.match.params.department_id}/items`, {...this.state} )
-    .then( resp => {
+    .then( res => {
       this.props.history.push(`/departments/${this.props.match.params.department_id}`)
     })
     .catch( err => {

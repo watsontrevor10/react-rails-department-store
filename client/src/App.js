@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, } from 'react-router-dom';
 import Home from './components/Home'
 import Departments from './components/Departments';
+import DeptEdit from './components/DeptEdit';
 import Items from './components/Items';
 import ItemForm from './components/ItemForm';
 import ItemEdit from './components/ItemEdit';
@@ -22,6 +23,7 @@ const App = () => (
         <Route exact path='/departments' component={Departments} />
         <Route exact path='/departments/new' component={StoreForm} />
         <Route exact path='/departments/:id' component={DepartmentView} />
+        <Route exact path='/departments/:id/edit' component={DeptEdit} />
         <Route exact path='/api/departments/:department_id/items' component={Items} />
         <Route exact path='/api/departments/:department_id/new' component={ItemForm} />
         <Route exact path='/api/departments/:department_id/items/:id' component={ItemEdit} />

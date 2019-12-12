@@ -17,6 +17,13 @@ class Departments extends React.Component {
       })
   }
 
+  deleteStore = (id) => {
+    axios.delete(`/api/departments/${id}`)
+      .then( res => {
+        this.setState({ stores: this.state.stores.filter(store => store.id !== id), })    
+      })
+  }
+
   renderStores = () => {
     const { stores, } = this.state 
 
@@ -26,7 +33,13 @@ class Departments extends React.Component {
       <Card as={CardStyle}>
         <Card.Content>
           <Card.Header>{ store.store_name } </Card.Header>
+          <hr/>
           <StyledButton as={Link} to={`/departments/${store.id}`}>Inventory</StyledButton>
+          <StyledButton 
+            bColor="delete" 
+            onClick={() => this.deleteStore(store.id)}>
+              Delete Store
+          </StyledButton>
         </Card.Content>
       </Card>
     ))

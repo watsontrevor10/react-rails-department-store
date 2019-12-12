@@ -13,8 +13,7 @@ class StoreForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // const store = { ...this.state, }
-
+    
     axios.post('/api/departments', {...this.state})
       .then( res => {
         this.props.history.push('/departments')
@@ -22,8 +21,8 @@ class StoreForm extends React.Component {
       .catch( err => {
         console.log(err)
       })
-
-    this.setState({ ...this.defaultValues })
+      
+      this.setState({ ...this.defaultValues })
   }
 
   render() {
@@ -44,7 +43,10 @@ class StoreForm extends React.Component {
               required
             />
           </Form.Group>
-          <Form.Button>Submit</Form.Button>
+          <Form.Group>
+            <Form.Button color="green inverted">Submit</Form.Button>
+            <Form.Button color="blue inverted" onClick={() => this.props.history.goBack()}>Cancel</Form.Button>
+          </Form.Group>
         </Form>
       </div>
     )

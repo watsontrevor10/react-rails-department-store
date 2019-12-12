@@ -28,15 +28,14 @@ class DepartmentView extends React.Component {
       .then( res => {
         this.setState({ store: res.data, })
       })
-      this.props.history.goBack()
+      setTimeout(() => this.props.history.push('/departments'), 1000)
   }
 
   deleteItem = (id) => {
     axios.delete(`/api/departments/${this.props.match.params.id}/items/${id}`)
       .then( res => {
-        this.setState({ items: this.state.items.filter(item => item.id !== id), })
+        this.setState({ items: this.state.items.filter(item => item.id !== id), })    
       })
-    
   }
   
   renderItems = () => {
@@ -44,7 +43,7 @@ class DepartmentView extends React.Component {
     if (this.state.items.length <= 0)
       return <h2>No Items</h2>
     return this.state.items.map( item => (
-      <Card>
+      <CardStyle>
         <Card.Content>
           <Card.Header>{ item.item_name }</Card.Header>
           <Card.Meta>{ item.quantity }</Card.Meta>
@@ -61,7 +60,7 @@ class DepartmentView extends React.Component {
               Delete Item
           </StyledButton>
         </Card.Content>
-      </Card>
+      </CardStyle>
     ))
   }
 
@@ -73,6 +72,7 @@ class DepartmentView extends React.Component {
           <Header as="h1">{ store_name }</Header>
         </Segment>
         <StyledButton onClick={this.props.history.goBack}>Back</StyledButton>
+        <StyledButton as={Link} to={`/departments/${this.state.store.id}/edit`}>Edit</StyledButton>
         <StyledButton onClick={this.deleteStore} bColor="delete">Delete</StyledButton>
         <br />
         <br />
