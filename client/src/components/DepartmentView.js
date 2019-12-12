@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import { Button, Header, Segment, Card, } from 'semantic-ui-react';
+import HeaderStyle from './styles/HeaderStyle';
+import CardStyle from './styles/CardStyle';
+import StyledButton from './styles/ButtonStyle';
 
 class DepartmentView extends React.Component {
   state = { store: {}, items: [], }
@@ -43,13 +46,20 @@ class DepartmentView extends React.Component {
     return this.state.items.map( item => (
       <Card>
         <Card.Content>
-        <Card.Header>{ item.item_name }</Card.Header>
-        <Card.Meta>{ item.quantity }</Card.Meta>
-        <Card.Meta>${ item.price }</Card.Meta>
+          <Card.Header>{ item.item_name }</Card.Header>
+          <Card.Meta>{ item.quantity }</Card.Meta>
+          <Card.Meta>${ item.price }</Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <Button color="blue inverted" as={Link} to={`/api/departments/${this.props.match.params.id}/items/${item.id}`}>Edit Item</Button>
-          <Button color="red inverted" onClick={() => this.deleteItem(item.id)}>Delete Item</Button>
+          <StyledButton 
+            as={Link} to={`/api/departments/${this.props.match.params.id}/items/${item.id}`}>
+              Edit Item
+          </StyledButton>
+          <StyledButton 
+            bColor="delete" 
+            onClick={() => this.deleteItem(item.id)}>
+              Delete Item
+          </StyledButton>
         </Card.Content>
       </Card>
     ))
@@ -62,14 +72,14 @@ class DepartmentView extends React.Component {
         <Segment>
           <Header as="h1">{ store_name }</Header>
         </Segment>
-        <Button onClick={this.props.history.goBack} color="blue inverted">Back</Button>
-        <Button onClick={this.deleteStore} color="red inverted">Delete</Button>
+        <StyledButton onClick={this.props.history.goBack}>Back</StyledButton>
+        <StyledButton onClick={this.deleteStore} bColor="delete">Delete</StyledButton>
         <br />
         <br />
         <hr />
         <Header as="h2">Inventory</Header>
         <br />
-        <Button as={Link} to={`/api/departments/${this.props.match.params.id}/new`}>Add Item</Button>
+        <StyledButton as={Link} to={`/api/departments/${this.props.match.params.id}/new`}>Add Item</StyledButton>
         <br />
         <br />
 

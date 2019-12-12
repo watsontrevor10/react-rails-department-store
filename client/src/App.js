@@ -10,9 +10,10 @@ import NoMatch from './components/NoMatch';
 import { Container, } from 'semantic-ui-react';
 import StoreForm from './components/StoreForm';
 import DepartmentView from './components/DepartmentView';
+import styled from 'styled-components';
 
 const App = () => (
-  <>
+  <AppContainer>
     <Navbar />
     <Container>
       <Switch>
@@ -29,7 +30,11 @@ const App = () => (
         <Route component={NoMatch} />
       </Switch>
     </Container>
-  </>
+  </AppContainer>
 )
+
+const AppContainer = styled.div`
+  background: #f4f4f4;
+`
 
 export default App;

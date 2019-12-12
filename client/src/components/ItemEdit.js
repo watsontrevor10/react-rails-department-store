@@ -10,14 +10,10 @@ class ItemForm extends React.Component {
       .then( res => {
         this.setState({ item_name: res.data.item_name, quantity: res.data.quantity, price: res.data.price })
       })
-      .catch( res => {
-        // debugger
-      })
     }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    // debugger
   }
 
   handleSubmit = (e) => {
