@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
-import { Button, Header, Segment, Card, } from 'semantic-ui-react';
-import HeaderStyle from './styles/HeaderStyle';
+import { Header, Segment, Card, } from 'semantic-ui-react';
+import H2Style from './styles/H2Style';
 import CardStyle from './styles/CardStyle';
 import StyledButton from './styles/ButtonStyle';
 
@@ -41,7 +41,7 @@ class DepartmentView extends React.Component {
   renderItems = () => {
 
     if (this.state.items.length <= 0)
-      return <h2>No Items</h2>
+      return <H2Style>No Items</H2Style>
     return this.state.items.map( item => (
       <CardStyle>
         <Card.Content>
@@ -77,7 +77,7 @@ class DepartmentView extends React.Component {
         <br />
         <br />
         <hr />
-        <Header as="h2">Inventory</Header>
+        <Header as="H2Style">Inventory</Header>
         <br />
         <StyledButton as={Link} to={`/api/departments/${this.props.match.params.id}/new`}>Add Item</StyledButton>
         <br />

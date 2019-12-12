@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, } from 'react-router-dom';
 import { Card, Header, Button, } from 'semantic-ui-react';
 // import styled from 'styled-components';
-import HeaderStyle from './styles/HeaderStyle';
+import H2Style from './styles/H2Style';
 import CardStyle from './styles/CardStyle';
 import StyledButton from './styles/ButtonStyle';
 
@@ -48,7 +48,7 @@ class Departments extends React.Component {
   render() {
     return (
       <div>
-        <Header as={HeaderStyle}>Stores</Header>
+        <Header as={H2Style}>Stores</Header>
         <StyledButton bColor='add' as={Link} to="/departments/new">Add Store</StyledButton>
         <br />
         <br />
