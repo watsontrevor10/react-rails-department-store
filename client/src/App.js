@@ -36,7 +36,7 @@ const App = () => (
 )
 
 const AppContainer = styled.div`
-  background: #f4f4f4;
+  background: #ffffff;
 `
 
 export default App;

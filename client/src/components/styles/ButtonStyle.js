@@ -5,9 +5,9 @@ const buttonColor = (bColor) => {
     case 'add':
       return '#21ba45';
     case 'delete':
-      return '#db2828';
+      return '#dc3b30';
     default:
-      return '#2185d0';
+      return '#1373e6';
   }
 }
 

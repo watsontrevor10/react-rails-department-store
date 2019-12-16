@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
-import { Header, Segment, Card, } from 'semantic-ui-react';
+import { Header, Segment, Card, Grid, } from 'semantic-ui-react';
 import H2Style from './styles/H2Style';
 import CardStyle from './styles/CardStyle';
 import StyledButton from './styles/ButtonStyle';
+import styled from 'styled-components'
 
 class DepartmentView extends React.Component {
   state = { store: {}, items: [], }
@@ -43,7 +44,7 @@ class DepartmentView extends React.Component {
     if (this.state.items.length <= 0)
       return <H2Style>No Items</H2Style>
     return this.state.items.map( item => (
-      <CardStyle>
+      <CardStyles>
         <Card.Content>
           <Card.Header>{ item.item_name }</Card.Header>
           <Card.Meta>{ item.quantity }</Card.Meta>
@@ -51,7 +52,8 @@ class DepartmentView extends React.Component {
         </Card.Content>
         <Card.Content extra>
           <StyledButton 
-            as={Link} to={`/api/departments/${this.props.match.params.id}/items/${item.id}`}>
+            as={Link} 
+            to={`/api/departments/${this.props.match.params.id}/items/${item.id}`}>
               Edit Item
           </StyledButton>
           <StyledButton 
@@ -60,7 +62,7 @@ class DepartmentView extends React.Component {
               Delete Item
           </StyledButton>
         </Card.Content>
-      </CardStyle>
+      </CardStyles>
     ))
   }
 
@@ -71,24 +73,52 @@ class DepartmentView extends React.Component {
         <Segment>
           <Header as="h1">{ store_name }</Header>
         </Segment>
-        <StyledButton onClick={this.props.history.goBack}>Back</StyledButton>
-        <StyledButton as={Link} to={`/departments/${this.state.store.id}/edit`}>Edit</StyledButton>
-        <StyledButton onClick={this.deleteStore} bColor="delete">Delete</StyledButton>
+        <StyledButton 
+          onClick={this.props.history.goBack}>
+            Back
+        </StyledButton>
+        <StyledButton 
+          as={Link} 
+          to={`/departments/${this.state.store.id}/edit`}>
+            Edit
+        </StyledButton>
+        <StyledButton 
+          onClick={this.deleteStore} 
+          bColor="delete"
+          justifyContent='right'>
+            Delete
+        </StyledButton>
         <br />
         <br />
+        <H2Style>Inventory</H2Style>
         <hr />
-        <Header as="H2Style">Inventory</Header>
         <br />
-        <StyledButton as={Link} to={`/api/departments/${this.props.match.params.id}/new`}>Add Item</StyledButton>
+        <StyledButton 
+          bColor="add" 
+          as={Link} 
+          to={`/api/departments/${this.props.match.params.id}/new`}>
+            Add Item
+        </StyledButton>
         <br />
         <br />
-
-        <Card.Group>
-          { this.renderItems() }
-        </Card.Group>
+      <Grid>
+        <Grid.Row relaxed>
+          <Grid.Column relaxed columns={4}>
+            <Card.Group centered>
+              { this.renderItems() }
+            </Card.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
       </div>
     )
   }
 }
+
+const CardStyles = styled(Card)`
+  height: 180px !important;
+  width: 250px !important; 
+  background: #a0ccf9 !important; 
+`
 
 export default DepartmentView;

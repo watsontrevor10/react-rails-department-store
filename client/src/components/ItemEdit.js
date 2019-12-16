@@ -19,7 +19,7 @@ class ItemForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post(`/api/departments/${this.props.match.params.department_id}/items`, {...this.state} )
+    axios.put(`/api/departments/${this.props.match.params.department_id}/items/${this.props.match.params.id}`, {...this.state} )
     .then( res => {
       this.props.history.push(`/departments/${this.props.match.params.department_id}`)
     })
